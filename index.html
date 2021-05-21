@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <!--Google analytics, cmon i need atleast how many people wiew this page-->
+  <script>
+    (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'G-9M0BTHRHQF', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <!--GA END-->
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Arimo&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous"
+    referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/css/weather-icons.min.css">
+  <title>Weather</title>
+</head>
+
+<body class="">
+  <div id="application">
+    <div v-if="loaded==true" class="padding-lg-x container flexbox f-center f-column background bg-sunny" v-bind:class="{
+          'bg-sunny':loaded==false,
+          'bg-clear':forecast.current.weather[0].main=='Clear',
+          'bg-sunny':forecast.current.weather[0].main=='Sunny',
+          'bg-rain':forecast.current.weather[0].main=='Rain',
+          'bg-clouds':forecast.current.weather[0].main=='Clouds'}">
+      <section class="animated current-temp">
+        <h1>{{location.address.city + ", " + location.address.state}} <i v-on:click="setLocation()" class="fas fa-map-marker-alt"></i></h1>
+        <p class="temp"><i :class="'wi weather-icon wi-owm-' + forecast.current.weather[0].id"></i>{{format(forecast.current.temp)}}</p>
+        <p>{{forecast.current.weather[0].main}}</p>
+
+        <p>Feels like {{format(forecast.current.feels_like)}}</p>
+        <p>Visibility {{forecast.current.visibility / 1000}} km</p>
+      </section>
+      <article class="timely-forcast animated">
+        <h1>Daily</h1>
+        <div class="flexbox f-center f-row">
+          <section class="timely-forcast-element needs-blur" v-for="dayforcast in forecast.daily">
+            <h2>{{ getDateFromTimestamp(dayforcast.dt).getUTCDate()}}</h2>
+            <i :class="'wi fa-3x wi-owm-' + dayforcast.weather[0].id"></i>
+            <p>{{format(dayforcast.temp.max)}} /<i>{{format(dayforcast.temp.min)}}</i></p>
+          </section>
+        </div>
+      </article>
+      <article class="timely-forcast animated">
+        <h1>Hourly</h1>
+        <div class="flexbox f-center f-row scroll-x max-x-60 ">
+          <section class="timely-forcast-element" v-for="hourlyforcast in forecast.hourly">
+            <h2>{{ getDateFromTimestamp(hourlyforcast.dt).getUTCHours() + ":00"}}</h2>
+            <i :class="'wi fa-3x wi-owm-' + hourlyforcast .weather[0].id"></i>
+            <p>{{format(hourlyforcast.temp)}}</p>
+          </section>
+        </div>
+      </article>
+      <article class="timely-forcast animated" v-if="polution != undefined">
+        <h1>Polution</h1>
+
+        <div class="flexbox f-center f-row f-wrap">
+          <section class="timely-forcast-element">
+            <h2>Air quality</h2>
+            <hr>
+            <p class="text-large">
+              <i v-if="polution.list[0].main.aqi < 3" class="fas fa-grin"></i>
+              <i v-else-if="polution.list[0].main.aqi > 3" class="far fa-frown"></i>
+              <i v-else class="far fa-meh text-large f-wrap"></i>
+              {{formatAqi(polution.list[0].main.aqi)}}
+            </p>
+            <p>Fine particulate matter : <strong>{{polution.list[0].components.pm2_5}}</strong></p>
+            <p>Coarse particulate matter : <strong>{{polution.list[0].components.pm10}}</strong></p>
+          </section>
+          <section class="timely-forcast-element">
+            <h2>Carbon monoxide</h2>
+            <hr>
+            <p class="text-large">{{polution.list[0].components.co}} μg/m3</p>
+          </section>
+          <section class="timely-forcast-element">
+            <h2>Nitrogen monoxide</h2>
+            <hr>
+            <p class="text-large">{{polution.list[0].components.no}} μg/m3</p>
+          </section>
+          <section class="timely-forcast-element">
+            <h2>Nitrogen dioxide</h2>
+            <hr>
+            <p class="text-large">{{polution.list[0].components.no2}} μg/m3</p>
+          </section>
+          <section class="timely-forcast-element">
+            <h2>Ozone</h2>
+            <hr>
+            <p class="text-large">{{polution.list[0].components.o3}} μg/m3</p>
+          </section>
+          <section class="timely-forcast-element">
+            <h2>Ammonia</h2>
+            <hr>
+            <p class="text-large">{{polution.list[0].components.nh3}} μg/m3</p>
+          </section>
+        </div>
+      </article>
+    </div>
+    <div v-else-if="latitude == undefined || longitude == undefined" class="flexbox f-center f-column fill-screen">
+      <div class="alert-info">
+        <h1>This app needs accsess to your unprecise location.</h1>
+        <hr>
+      </div>
+    </div>
+    <div v-else class="background bg-clear flexbox flexbox-center">
+      <h1>Loading</h1>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+  <script type="text/javascript" src="/js/index.js"></script>
+</body>
+
+</html>

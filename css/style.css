@@ -1,0 +1,278 @@
+:root {
+  --lighter-blue: #C0E5F8;
+  --light-blue: #60C3F2;
+  --blue: #0EA0E7;
+  --murky-blue: #7CB4E4;
+}
+
+@media only screen and (max-width: 600px) {}
+
+body {
+  padding: 0px;
+  margin: 0px;
+  font-family: 'Arimo', sans-serif;
+  color: white;
+}
+
+.background {
+  min-height: 100vh;
+  margin-top: 0px;
+}
+
+.bg-sunny {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 75%), url("/img/sunny.jpg");
+  /*rgba(14,160,231,1)*/
+  background-size: cover;
+}
+
+.bg-clear {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 75%), url("/img/clear.jpg");
+  background-size: cover;
+}
+
+.bg-rain {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 75%), url("/img/rain.jpg");
+  background-size: cover;
+}
+
+.bg-clouds {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 75%), url("/img/clouds.jpg");
+  background-size: cover;
+}
+
+h1 {}
+
+.no-padding {
+  padding: 0px;
+}
+
+.no-margin {
+  margin: 0px;
+}
+
+.container {
+  padding: 30px;
+}
+
+.flexbox {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.f-center {
+  align-items: center;
+  justify-content: center;
+}
+
+.f-center-x {
+  align-items: center;
+}
+
+.f-column {
+  flex-direction: column;
+}
+
+.f-row {
+  flex-direction: row;
+}
+
+.f-wrap {
+  flex-wrap: wrap;
+}
+
+.temp {
+  font-size: 4rem;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+.weather-icon {
+  margin-right: 10px;
+}
+
+.timely-forcast-element {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.timely-forcast>h1 {
+  text-align: center;
+}
+
+.timely-forcast>div>section {
+  text-align: center;
+}
+
+.timely-forcast-element:first-child.needs-blur{
+  backdrop-filter: blur(5px);
+  border: solid white 1px;
+  border-radius: 10px;
+  margin-right: 2px;
+  padding-right: 3.5px;
+  padding-left: 3.5px;
+}
+
+.bordered {
+  border-color: white;
+  border-radius: 20px;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.timely-forcast {
+  min-width: 60vw;
+}
+
+.scroll-x {
+  overflow-x: scroll;
+}
+
+.max-x-60 {
+  max-width: 59vw;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.fill-screen {
+  min-height: 100vh;
+}
+
+.alert-info {
+  color: black;
+}
+
+/*Nav*/
+.nav {
+  backdrop-filter: blur(20px) brightness(0.9);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.3rem;
+}
+
+.nav>a {
+  color: var(--lighter-blue);
+  margin-left: 1rem;
+  text-decoration: none;
+}
+
+.nav>a.branding {
+  color: var(--blue);
+}
+
+.nav>a.active {
+  color: var(--light-blue);
+}
+
+/*Scrollbar*/
+/*Fade and move in*/
+.animated {
+  animation: fadeIn linear 1s;
+  -webkit-animation: fadeIn linear 1s;
+  -moz-animation: fadeIn linear 1s;
+  -o-animation: fadeIn linear 1s;
+  -ms-animation: fadeIn linear 1s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0rem);
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0rem);
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0rem);
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0rem);
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0rem);
+  }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  color: var(--lighter-blue);
+  border-radius: 5px;
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  backdrop-filter: brightness(1.25);
+  background: #555;
+}
+
+.text-large {
+  font-size: 20px;
+}
+
+.current-temp {
+  margin-top: 20vh;
+}
+
+.padding-lg-x {
+  padding-left: 20vw;
+  padding-right: 20vw;
+}
