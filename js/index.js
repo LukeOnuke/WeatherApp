@@ -16,8 +16,9 @@ let app = new Vue({
       return new Date((timestamp + app.forecast.timezone_offset) * 1e3);
     },
     setLocation() {
+      //https://ipapi.co/json/
       if (!navigator.geolocation) {
-        alert("GPS not avalable");
+        // TODO: Add notif system
       } else {
         navigator.geolocation.getCurrentPosition(function sucsess(loc) {
           app.longitude = loc.coords.longitude;
@@ -33,8 +34,7 @@ let app = new Vue({
           console.log(loc.coords.longitude + " " + loc.coords.latitude);
           refresh();
         }, function error() {
-          alert("Could not get location.");
-          app.setLocation();
+
         }, {
           enableHighAccuracy: false
         });
@@ -76,22 +76,27 @@ async function get(requestPath) {
 
 (function() {
   console.log("Started, querring api");
-  app.setLocation();
   if (Cookies.get("lat") == undefined || Cookies.get("lon") == undefined) {
-    app.setLocation();
-  } else {
-    app.longitude = Cookies.get("lon");
-    app.latitude = Cookies.get("lat");
+    get("https://ipapi.co/json/").then(ipLocation => {
+      Cookies.set("lon", ipLocation.longitude, {
+        sameSite: "strict"
+      });
+      Cookies.set("lat", ipLocation.latitude, {
+        sameSite: "strict"
+      });
+      app.longitude = Cookies.get("lon");
+      app.latitude = Cookies.get("lat");
+      refresh();
+    });
+  }else {
+    refresh();
   }
-
-  refresh();
 })();
 
 function refresh() {
   app.longitude = Cookies.get("lon");
   app.latitude = Cookies.get("lat");
   get("https://api.lukeonuke.com/weather?lat=" + app.latitude + "&lon=" + app.longitude).then(response => {
-
     console.log("Got querry response");
     app.forecast = response;
     get("https://api.lukeonuke.com/map?lat=" + app.latitude + "&lon=" + app.longitude).then((locationResponse) => {
