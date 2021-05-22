@@ -5,7 +5,27 @@
   --murky-blue: #7CB4E4;
 }
 
-@media only screen and (max-width: 600px) {}
+@media only screen and (max-width: 700px) {
+  .padding-lg-x{
+    padding-left: 2vw !important;
+    padding-right: 2vw !important;
+  }
+  .timely-forcast > div{
+    font-size: 0.7rem;
+  }
+  .child-wrap-full{
+    width: 100%;
+  }
+  .hide-on-mobile{
+    display: none;
+  }
+  .max-x-60{
+    max-width: 94vw !important;
+  }
+  .scrollbar-safe:first-child{
+    padding-left: 10vw;
+  }
+}
 
 body {
   padding: 0px;
@@ -299,4 +319,12 @@ h1 {}
 
 .rotating {
   -webkit-animation: rotating 2s linear infinite;
+}
+
+.child-wrap-full{
+
+}
+
+.scrollbar-safe:first-child{
+  padding-left: 120vw;
 }

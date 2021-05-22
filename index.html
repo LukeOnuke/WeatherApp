@@ -28,6 +28,7 @@
   <meta name="description" content= "The opensource weather web app. Built to be fast and secure." />
   <meta name="robots" content= "index, follow" />
   <meta name="keywords" content="forecast, weather, weather forecast, 7 day forecast">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <!--Social platform meta tags-->
   <meta name="twitter:title" content="Weather">
   <meta name="og:title" content="Weather">
@@ -46,7 +47,7 @@
           'bg-clouds':forecast.current.weather[0].main=='Clouds'}">
       <section class="animated current-temp">
         <h1>{{location.address.city + ", " + location.address.state}} <i v-on:click="setLocation()" class="fas fa-map-marker-alt"></i></h1>
-        <p class="temp"><i :class="'wi weather-icon wi-owm-' + forecast.current.weather[0].id"></i>{{format(forecast.current.temp)}}</p>
+        <p class="temp text-center"><i :class="'wi weather-icon wi-owm-' + forecast.current.weather[0].id"></i>{{format(forecast.current.temp)}}</p>
         <p>{{forecast.current.weather[0].main}}</p>
 
         <p>Feels like {{format(forecast.current.feels_like)}}</p>
@@ -54,7 +55,7 @@
       </section>
       <article class="timely-forcast animated">
         <h1>Daily</h1>
-        <div class="flexbox f-center f-row">
+        <div class="flexbox f-center f-row f-wrap">
           <section class="timely-forcast-element needs-blur" v-for="dayforcast in forecast.daily">
             <h2>{{ getDateFromTimestamp(dayforcast.dt).getUTCDate()}}</h2>
             <i :class="'wi fa-3x wi-owm-' + dayforcast.weather[0].id"></i>
@@ -64,7 +65,7 @@
       </article>
       <article class="timely-forcast animated">
         <h1>Hourly</h1>
-        <div class="flexbox f-center f-row scroll-x max-x-60 ">
+        <div class="flexbox f-center f-row scroll-x max-x-60">
           <section class="timely-forcast-element" v-for="hourlyforcast in forecast.hourly">
             <h2>{{ getDateFromTimestamp(hourlyforcast.dt).getUTCHours() + ":00"}}</h2>
             <i :class="'wi fa-3x wi-owm-' + hourlyforcast .weather[0].id"></i>
@@ -76,9 +77,9 @@
         <h1>Polution</h1>
 
         <div class="flexbox f-center f-row f-wrap">
-          <section class="timely-forcast-element">
+          <section class="timely-forcast-element child-wrap-full">
             <h2>Air quality</h2>
-            <hr>
+            <hr class="hide-on-mobile">
             <p class="text-large">
               <i v-if="polution.list[0].main.aqi < 3" class="fas fa-grin"></i>
               <i v-else-if="polution.list[0].main.aqi > 3" class="far fa-frown"></i>
@@ -88,29 +89,29 @@
             <p>Fine particulate matter : <strong>{{polution.list[0].components.pm2_5}}</strong></p>
             <p>Coarse particulate matter : <strong>{{polution.list[0].components.pm10}}</strong></p>
           </section>
-          <section class="timely-forcast-element">
+          <section class="timely-forcast-element child-wrap-full">
             <h2>Carbon monoxide</h2>
-            <hr>
+            <hr class="hide-on-mobile">
             <p class="text-large">{{polution.list[0].components.co}} μg/m3</p>
           </section>
-          <section class="timely-forcast-element">
+          <section class="timely-forcast-element child-wrap-full">
             <h2>Nitrogen monoxide</h2>
-            <hr>
+            <hr class="hide-on-mobile">
             <p class="text-large">{{polution.list[0].components.no}} μg/m3</p>
           </section>
-          <section class="timely-forcast-element">
+          <section class="timely-forcast-element child-wrap-full">
             <h2>Nitrogen dioxide</h2>
-            <hr>
+            <hr class="hide-on-mobile">
             <p class="text-large">{{polution.list[0].components.no2}} μg/m3</p>
           </section>
-          <section class="timely-forcast-element">
+          <section class="timely-forcast-element child-wrap-full">
             <h2>Ozone</h2>
-            <hr>
+            <hr class="hide-on-mobile">
             <p class="text-large">{{polution.list[0].components.o3}} μg/m3</p>
           </section>
-          <section class="timely-forcast-element">
+          <section class="timely-forcast-element child-wrap-full">
             <h2>Ammonia</h2>
-            <hr>
+            <hr class="hide-on-mobile">
             <p class="text-large">{{polution.list[0].components.nh3}} μg/m3</p>
           </section>
         </div>
