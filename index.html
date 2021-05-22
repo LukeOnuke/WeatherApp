@@ -113,13 +113,16 @@
       </article>
     </div>
     <div v-else-if="latitude == undefined || longitude == undefined" class="flexbox f-center f-column fill-screen">
-      <div class="alert-info">
+      <div class="text-normal">
         <h1>This app needs accsess to your unprecise location.</h1>
         <hr>
       </div>
     </div>
-    <div v-else class="background bg-clear flexbox flexbox-center">
+    <div v-else class="background bg-clear flexbox f-center r-column">
       <h1>Loading</h1>
+      <div class="progresswheel rotating">
+
+      </div>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>

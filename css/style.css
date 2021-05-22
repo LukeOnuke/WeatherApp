@@ -106,7 +106,7 @@ h1 {}
   text-align: center;
 }
 
-.timely-forcast-element:first-child.needs-blur{
+.timely-forcast-element:first-child.needs-blur {
   backdrop-filter: blur(5px);
   border: solid white 1px;
   border-radius: 10px;
@@ -142,7 +142,7 @@ h1 {}
   min-height: 100vh;
 }
 
-.alert-info {
+.text-normal {
   color: black;
 }
 
@@ -275,4 +275,28 @@ h1 {}
 .padding-lg-x {
   padding-left: 20vw;
   padding-right: 20vw;
+}
+
+@-webkit-keyframes rotating {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+.progresswheel {
+  width: 5rem;
+  height: 5rem;
+  border-left: 3px solid var(--light-blue);
+  border-radius: 5rem;
+  -webkit-animation: mymove 5s infinite;
+  /* Chrome, Safari, Opera */
+  animation: mymove 5s infinite;
+}
+
+.rotating {
+  -webkit-animation: rotating 2s linear infinite;
 }

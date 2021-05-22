@@ -90,16 +90,16 @@ async function get(requestPath) {
 function refresh() {
   app.longitude = Cookies.get("lon");
   app.latitude = Cookies.get("lat");
-  get("http://vps.pequla.com:2511/weather?lat=" + app.latitude + "&lon=" + app.longitude).then(response => {
+  get("https://api.lukeonuke.com/weather?lat=" + app.latitude + "&lon=" + app.longitude).then(response => {
 
     console.log("Got querry response");
     app.forecast = response;
-    get("http://vps.pequla.com:2511/map?lat=" + app.latitude + "&lon=" + app.longitude).then((locationResponse) => {
+    get("https://api.lukeonuke.com/map?lat=" + app.latitude + "&lon=" + app.longitude).then((locationResponse) => {
       app.location = locationResponse;
       console.log(app.location);
       app.loaded = true;
     });
-    get("http://vps.pequla.com:2511/pollution?lat=" + app.latitude + "&lon=" + app.longitude).then((airPolution) => {
+    get("https://api.lukeonuke.com/pollution?lat=" + app.latitude + "&lon=" + app.longitude).then((airPolution) => {
       app.polution = airPolution;
     });
   });
