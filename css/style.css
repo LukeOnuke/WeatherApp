@@ -22,9 +22,6 @@
   .max-x-60{
     max-width: 94vw !important;
   }
-  .scrollbar-safe:first-child{
-    padding-left: 10vw;
-  }
 }
 
 body {
@@ -325,6 +322,19 @@ h1 {}
 
 }
 
-.scrollbar-safe:first-child{
-  padding-left: 120vw;
+.notification-tray{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: sticky;
+  top: 0;
+}
+
+.notification{
+  backdrop-filter: blur(20px);
+}
+
+.notif-info{
+  background-color: rgba(25, 25, 200, .5);
+  border: solid 1px rgba(25, 25, 200, .5);
 }

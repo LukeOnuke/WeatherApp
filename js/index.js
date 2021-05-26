@@ -6,16 +6,18 @@ let app = new Vue({
     location: {},
     loaded: false,
     forecast: {},
-    polution: undefined
+    polution: undefined,
+    notifications: []
   },
   methods: {
     format(temp) {
-      return Math.round(temp - 273.15) + " °C";
+      return Math.round(temp - 273.15) + "°C";
     },
     getDateFromTimestamp(timestamp) {
       return new Date((timestamp + app.forecast.timezone_offset) * 1e3);
     },
     setLocation() {
+      //app.addNotification("Pogger", "Poggers", "info");
       //https://ipapi.co/json/
       if (!navigator.geolocation) {
         // TODO: Add notif system
@@ -61,6 +63,9 @@ let app = new Vue({
           return "N/A";
           break;
       }
+    },
+    addNotification(text, title, notificationLevel){
+      app.notifications.push({text: text, title: title, notificationLevel: notificationLevel});
     }
   }
 })

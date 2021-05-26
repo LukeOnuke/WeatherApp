@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <!--Google analytics, cmon i need atleast how many people wiew this page-->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-9M0BTHRHQF"></script>
-  <script>
+  <script async>
     window.dataLayer = window.dataLayer || [];
 
     function gtag() {
@@ -25,8 +25,8 @@
     referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="/css/weather-icons.min.css">
   <title>Weather</title>
-  <meta name="description" content= "The opensource weather web app. Built to be fast and secure." />
-  <meta name="robots" content= "index, follow" />
+  <meta name="description" content="The opensource weather web app. Built to be fast and secure." />
+  <meta name="robots" content="index, follow" />
   <meta name="keywords" content="forecast, weather, weather forecast, 7 day forecast">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!--Social platform meta tags-->
@@ -45,6 +45,13 @@
           'bg-sunny':forecast.current.weather[0].main=='Sunny',
           'bg-rain':forecast.current.weather[0].main=='Rain',
           'bg-clouds':forecast.current.weather[0].main=='Clouds'}">
+      <div class="notification-tray">
+        <section v-for="notification in notifications" class="notification notif-info">
+          <h1>{{ notification.title }}</h1>
+          <hr>
+          <p>{{ notification.text }}</p>
+        </section>
+      </div>
       <section class="animated current-temp">
         <h1>{{location.address.city + ", " + location.address.state}} <i v-on:click="setLocation()" class="fas fa-map-marker-alt"></i></h1>
         <p class="temp text-center"><i :class="'wi weather-icon wi-owm-' + forecast.current.weather[0].id"></i>{{format(forecast.current.temp)}}</p>
@@ -118,9 +125,17 @@
       </article>
     </div>
     <div v-else class="background bg-clear flexbox f-center r-column">
-      <h1>Loading</h1>
-      <div class="progresswheel rotating">
+      <div class="notification-tray" style="background-color: red;">
+        <section v-for="notification in notifications">
+          {{ notification.text }}
+        </section>
+      </div>
 
+      <div class="">
+        <h1>Loading</h1>
+        <div class="progresswheel rotating">
+
+        </div>
       </div>
     </div>
   </div>
