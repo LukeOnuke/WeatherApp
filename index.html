@@ -64,7 +64,7 @@
         <h1>Daily</h1>
         <div class="flexbox f-center f-row f-wrap">
           <section class="timely-forcast-element needs-blur" v-for="dayforcast in forecast.daily">
-            <h2>{{ getDateFromTimestamp(dayforcast.dt).getUTCDate()}}</h2>
+            <h2>{{ getDateFromTimestamp(dayforcast.dt).getUTCDate()}} {{ getDateFromTimestamp(dayforcast.dt).toLocaleString('en-US', {month: 'short'})}}</h2>
             <i :class="'wi fa-3x wi-owm-' + dayforcast.weather[0].id"></i>
             <p>{{format(dayforcast.temp.max)}} /<i>{{format(dayforcast.temp.min)}}</i></p>
           </section>
@@ -72,11 +72,11 @@
       </article>
       <article class="timely-forcast animated">
         <h1>Hourly</h1>
-        <div class="flexbox f-center f-row scroll-x max-x-60">
-          <section class="timely-forcast-element" v-for="hourlyforcast in forecast.hourly">
-            <h2>{{ getDateFromTimestamp(hourlyforcast.dt).getUTCHours() + ":00"}}</h2>
-            <i :class="'wi fa-3x wi-owm-' + hourlyforcast .weather[0].id"></i>
-            <p>{{format(hourlyforcast.temp)}}</p>
+        <div class="flexbox f-center f-row f-wrap">
+          <section class="timely-forcast-element" v-for="index in 8" v-if="forecast.hourly[index * 3].dt > forecast.current.dt">
+            <h2>{{ getDateFromTimestamp(forecast.hourly[index * 3].dt).getUTCHours() + ":00"}}</h2>
+            <i :class="'wi fa-3x wi-owm-' + forecast.hourly[index * 3].weather[0].id"></i>
+            <p>{{format(forecast.hourly[index * 3].temp)}}</p>
           </section>
         </div>
       </article>
