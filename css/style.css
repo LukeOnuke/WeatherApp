@@ -338,3 +338,38 @@ h1 {}
   background-color: rgba(25, 25, 200, .5);
   border: solid 1px rgba(25, 25, 200, .5);
 }
+
+.cookie-notice{
+  backdrop-filter: blur(20px);
+  background-color: rgba(25, 25, 25, .5);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.cookie-notice-parrent{
+  padding: 5px;
+  position: fixed;
+  top: 0px;
+  z-index: 99 !important;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.bg-highlight{
+  background-color: rgba(51, 165, 222, .5);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.text-big{
+  font-size: 3rem;
+}
+
+.margin-left-20{
+  margin-left: 20px;
+}
+
+.text-white{
+  color: white;
+}

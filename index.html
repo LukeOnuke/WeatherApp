@@ -11,9 +11,7 @@
     function gtag() {
       dataLayer.push(arguments);
     }
-    gtag('js', new Date());
 
-    gtag('config', 'G-9M0BTHRHQF');
   </script>
   <!--GA END-->
 
@@ -136,6 +134,14 @@
         <div class="progresswheel rotating">
 
         </div>
+      </div>
+    </div>
+
+    <div class="cookie-notice-parrent animated" v-if="cookiePrefSet==false">
+      <div class="cookie-notice">
+        <h1>Cookie notice</h1>
+        <p>We do not store data other than analytical data. This site uses cookies to store application data on the client, and for <strong>analytics</strong>. For more information visit our privacy page. Do you accept cookies that are not strictly needed for the functioning of this site? </p>
+        <a href="#" class="bg-highlight text-big margin-left-20 text-white" onclick="app.cookiePolicySet(true)">Yes</a> <a href="#" onclick="app.cookiePolicySet(true)" class="bg-highlight text-big margin-left-20 text-white">No</a>
       </div>
     </div>
   </div>
