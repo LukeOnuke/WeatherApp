@@ -37,7 +37,7 @@
 
 <body class="">
   <div id="application">
-    <div v-if="loaded==true" class="padding-lg-x container flexbox f-center f-column background bg-sunny" v-bind:class="{
+    <div v-if="loaded==true" class="padding-lg-x container flexbox f-center f-column background bg-sunny" v-bind:style="'background: url(/img/' + forecast.current.weather[0].main.toLowerCase() + '.jpg);'" v-bind:class="{
           'bg-sunny':loaded==false,
           'bg-clear':forecast.current.weather[0].main=='Clear',
           'bg-sunny':forecast.current.weather[0].main=='Sunny',
