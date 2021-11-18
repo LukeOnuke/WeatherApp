@@ -37,24 +37,9 @@ body {
   background-size: cover !important;
 }
 
-.bg-sunny {
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 75%), url("/img/sunny.jpg");
-  /*rgba(14,160,231,1)*/
-  background-size: cover;
-}
-
 .bg-clear {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 75%), url("/img/clear.jpg");
-  background-size: cover;
-}
-
-.bg-rain {
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 75%), url("/img/rain.jpg");
-  background-size: cover;
-}
-
-.bg-clouds {
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 75%), url("/img/clouds.jpg");
+  /*rgba(14,160,231,1)*/
   background-size: cover;
 }
 

@@ -37,12 +37,7 @@
 
 <body class="">
   <div id="application">
-    <div v-if="loaded==true" class="padding-lg-x container flexbox f-center f-column background bg-sunny" v-bind:style="'background: url(/img/' + forecast.current.weather[0].main.toLowerCase() + '.jpg);'" v-bind:class="{
-          'bg-sunny':loaded==false,
-          'bg-clear':forecast.current.weather[0].main=='Clear',
-          'bg-sunny':forecast.current.weather[0].main=='Sunny',
-          'bg-rain':forecast.current.weather[0].main=='Rain',
-          'bg-clouds':forecast.current.weather[0].main=='Clouds'}">
+    <div v-if="loaded==true" class="padding-lg-x container flexbox f-center f-column background bg-clear" v-bind:style="'background: url(/img/' + forecast.current.weather[0].main.toLowerCase() + '.jpg);'" >
       <div class="notification-tray">
         <section v-for="notification in notifications" class="notification notif-info">
           <h1>{{ notification.title }}</h1>
