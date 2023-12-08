@@ -87,19 +87,6 @@ async function get(requestPath) {
 }
 
 (function() {
-    console.log("Getting cookie policy " + localStorage.getItem("cookiePolicy"));
-    if (localStorage.getItem("cookiePolicy") != undefined) {
-        app.cookiePolicy = localStorage.getItem("cookiePolicy");
-        app.cookiePrefSet = true;
-
-        if (localStorage.getItem("cookiePolicy") == true) {
-            gtag('js', new Date());
-
-            gtag('config', 'G-9M0BTHRHQF');
-        }
-    }
-
-
     console.log("Started, querring api");
     if (Cookies.get("lat") == undefined || Cookies.get("lon") == undefined) {
         get("https://ipapi.co/json/").then(ipLocation => {
